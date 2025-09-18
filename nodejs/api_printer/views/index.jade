@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  nav(class="navbar navbar-dark bg-dark")
+    .container-fluid
+      a(class="navbar-brand m-auto text-uppercase fw-bold", href="#") Servicio para impresión
+  
+  .container
+    h1(class="my-4") Seleccione la impresora a utilizar
+    .card.shadow.rounded
+      .container.p-4
+        .row
+          .col-12.col-md-4
+            h4.mb-2.fw-bold Impresora actual:
+          .col-12.col-md-8
+            span.badge.rounded-pill.bg-success.fw-light.fs-5(id="currentPrint") #{currentPrint}
+              i.bi.bi-printer.ms-2
+        .input-group
+          label.input-group-text.my-4(for="printers") Impresoras en el sistema
+          select.form-select.my-4(id="printers", aria-label="Impresora por defecto")
+            each print in printers
+              option(value=print.name) #{print.name}
+        button.btn.btn-success(type="button",onClick="update()") Cambiar impresora
+    
+    //- .card.shadow.rounded.my-4
+    //-   .container.p-4
+    //-     .row
+    //-       .col-12.col-md-4
+    //-         h4.mb-2.fw-bold URL servicio:
+    //-       .col-12.col-md-8
+    //-         span.badge.rounded-pill.bg-primary.fw-light.fs-5(id="urlPrint")
+    //-         label.text-muted.fs-6 Esta URL permite utilizar el servicio de impresión.
